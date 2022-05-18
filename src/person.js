@@ -7,7 +7,7 @@ export class Person {
         this.endDate = endDate
     }
 
-    formatDate(date) {
+    #formatDate(date) {
         const [year, month, day] = date.split('-').map(Number)
 
         return new Date(year, month -1, day)
@@ -29,10 +29,22 @@ export class Person {
                 .format(this.distanceTraveled),
             startDate: new Intl
                 .DateTimeFormat(language, { month: 'long', day: '2-digit', year: 'numeric' })
-                .format(this.formatDate(this.startDate)),
+                .format(this.#formatDate(this.startDate)),
             endDate: new Intl
                 .DateTimeFormat(language, { month: 'long', day: '2-digit', year: 'numeric' })
-                .format(this.formatDate(this.endDate))
+                .format(this.#formatDate(this.endDate))
         }
+    }
+
+    static generateInstanceFromString(string, separator = ' ') {
+        const [id, vehicles, distanceTraveled, startDate, endDate] = string.split(separator)
+
+        return new Person({
+            id,
+            vehicles: vehicles.split(','),
+            distanceTraveled,
+            startDate,
+            endDate
+        })
     }
 }

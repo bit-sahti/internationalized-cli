@@ -1,27 +1,33 @@
 import database from './../database.json'
-import { TerminalController } from './terminalControler.js'
+import { Person } from './person.js'
+import { TerminalController } from './terminalController.js'
 
 const defaultLanguage = 'pt-BR'
 const exitCommand = ':q'
 
-const terminalControler = new TerminalController()
-terminalControler.initializeTerminal(database, defaultLanguage)
+const terminalController = new TerminalController()
+
+terminalController.initializeTerminal(database, defaultLanguage)
+
+function shouldExitLoop(input, command = exitCommand) {
+    return input === command
+}
 
 async function mainLoop() {
     try {
-        const userData = await terminalControler.question('Enter the data: ')
+        const userData = await terminalController.question('Enter the data: ')
+        
+        let shouldExit = shouldExitLoop(userData)
 
-        if (userData === exitCommand) {
-            console.log('Exiting process')
+        if (shouldExit) return terminalController.closeTerminal()
 
-            terminalControler.closeTerminal()
+        terminalController.updateTable(userData)
 
-            return
-        }
+        //2 bike,moto 5000 2021-01-01 2022-02-02
 
         return mainLoop()
     } catch (error) {
-        console.log('Error ', error)
+        console.log('Unsupported command or data format. Error: ', error)
 
         mainLoop()
     }

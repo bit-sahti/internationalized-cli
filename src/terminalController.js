@@ -7,9 +7,7 @@ import { Person } from './person.js'
 
 export class TerminalController {
     constructor() {
-        this.data = {}
-        this.print = {}
-        this.tableOptions = {
+        this.tableOptions =  {
             leftPad: 2,
             columns: [
                 { field: "id", name: chalk.cyan("ID") },
@@ -36,14 +34,26 @@ export class TerminalController {
         this.terminal.close()
     }
 
-    initializeTable(database, language) {
-        const data = database.map(item => new Person(item).formatted(language))
+    initializeTable(data, language) {
+        const formattedData = data.map(item => new Person(item).formatted(language))
 
-        const table = chalkTable(this.tableOptions, data)
+        const table = chalkTable(this.tableOptions, formattedData)
 
-        this.print = console.draft(table)
-        this.data = data
+        this.language = language
+        this.data = formattedData
+        this.printTable = console.draft(table)
     }
+
+    updateTable(rawData) {
+        const formattedData = Person.generateInstanceFromString(rawData).formatted(this.language)
+
+        this.data.push(formattedData)
+        
+        const table = chalkTable(this.tableOptions, this.data)
+
+        this.printTable(table)
+    }
+    
 
     question(msg = '') {
         return new Promise(resolve =>  this.terminal.question(msg, resolve))
