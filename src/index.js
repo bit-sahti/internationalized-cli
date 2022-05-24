@@ -1,5 +1,4 @@
 import database from './../database.json'
-import { Person } from './person.js'
 import { TerminalController } from './terminalController.js'
 
 const defaultLanguage = 'pt-BR'
@@ -21,9 +20,9 @@ async function mainLoop() {
 
         if (shouldExit) return terminalController.closeTerminal()
 
-        terminalController.updateTable(userData)
+        await terminalController.updateTable(userData)
 
-        //2 bike,moto 5000 2021-01-01 2022-02-02
+        //2 Bike,Moto 5000 2021-01-01 2022-02-02
 
         return mainLoop()
     } catch (error) {

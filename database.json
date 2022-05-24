@@ -1,9 +1,30 @@
 [
-    {
-        "id": 1,
-        "vehicles": ["Motocicleta", "Carro", "Caminhão"],
-        "distanceTraveled": 10000,
-        "startDate": "2020-01-01",
-        "endDate": "2022-01-01"
-    }
+  {
+    "id": 1,
+    "vehicles": ["Motocicleta", "Carro", "Caminhão"],
+    "distanceTraveled": 10000,
+    "startDate": "2020-01-01",
+    "endDate": "2022-01-01"
+  },
+  {
+    "id": "2",
+    "vehicles": ["Bike", "Moto"],
+    "distanceTraveled": "5000",
+    "startDate": "2021-01-01",
+    "endDate": "2022-02-02"
+  },
+  {
+    "id": "3",
+    "vehicles": ["Jatinho", "Cavalo"],
+    "distanceTraveled": "1500000",
+    "startDate": "1990-09-25",
+    "endDate": "2009-05-30"
+  },
+  {
+    "id": "4",
+    "vehicles": ["Avião", "Ônibus"],
+    "distanceTraveled": "80000",
+    "startDate": "2021-05-06",
+    "endDate": "2022-01-19"
+  }
 ]
