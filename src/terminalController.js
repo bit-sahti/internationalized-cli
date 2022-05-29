@@ -4,7 +4,7 @@ import chalkTable from 'chalk-table'
 import DraftLog from 'draftlog'
 
 import { Person } from './person.js'
-import { save } from './repository.js'
+import { Repository } from './repository.js'
 
 export class TerminalController {
     constructor() {
@@ -49,7 +49,7 @@ export class TerminalController {
         const normalizedData = Person.generateInstanceFromString(rawData)
 
         if (shouldSave) {
-            await save(normalizedData)
+            await Repository.save(normalizedData)
         }
 
         this.data.push(normalizedData.formatted(this.language))
