@@ -8,17 +8,23 @@
     "node": "14.19"
   },
   "scripts": {
-    "dev": "npx nodemon --ignore database.json --exec node --experimental-json-modules src/index.js"
+    "dev": "npx nodemon --ignore database.json --exec node --experimental-json-modules src/index.js",
+    "test": "npx mocha -w --parallel tests/*.test.js",
+    "test:cov": "npx c8 npx mocha --parallel tests/*.test.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "chalk": "^5.0.1",
-    "chalk-table": "^1.0.2",
-    "draftlog": "^1.0.13"
+    "chalk": "5.0.1",
+    "chalk-table": "1.0.2",
+    "draftlog": "1.0.13"
   },
   "devDependencies": {
-    "nodemon": "^2.0.16"
+    "c8": "7.11.3",
+    "chai": "4.3.6",
+    "mocha": "10.0.0",
+    "nodemon": "2.0.16",
+    "sinon": "14.0.0"
   }
 }
